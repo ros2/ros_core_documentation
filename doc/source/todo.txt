@@ -1,0 +1,11 @@
+Things todo before reality catches up with the documentation:
+
+- Propose merging some packages into `ament_core`.
+- Merge `api_review` branches with new packages and other reorganizations of the repository.
+- Create a consistent naming scheme for interface and implementation package pairs, e.g. rcl and rcl_runtime.
+
+Ideas:
+
+- Create interface/implementation packages as three packages, e.g. ``rcl_interface``, ``rcl_implementation``, and ``rcl`` which depends on both.
+ - This allows someone to depend on ``rcl_interface`` and ``rcl_implementation2`` if they know what they are doing.
+ - Normal users would depend on ``rcl`` which gives the interface and the nominal implementation.

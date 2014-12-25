@@ -1,0 +1,29 @@
+{# Import the theme's layout. #}
+{% extends "!layout.html" %}
+
+{# Add a bootstrap glyphicon of a book after all glossary references. #}
+{% block extrahead %}
+    <script>
+        $(document).ready(function() {
+            // Put book glyphicons after glossary term links
+            $('.std-term').each(function(i, obj) {
+                var parent = $(obj).parent();
+                if (parent.is("a"))
+                {
+                    var icon = $('<span class="glyphicon glyphicon-book"></span>');
+                    icon.css('font-size', '0.7em').css('padding', '1px');
+                    parent.append(icon);
+                }
+            });
+            // glossary terms in blockquotes
+            $('.glossary').each(function(i, obj) {
+                var blockquote = $('<blockquote></blockquote>');
+                blockquote.append($(obj).clone());
+                $(obj).replaceWith(blockquote);
+            });
+        });
+    </script>
+{% endblock %}
+
+{# Custom CSS overrides #}
+{% set bootswatch_css_custom = ['_static/custom.css'] %}

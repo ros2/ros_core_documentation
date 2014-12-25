@@ -1,0 +1,12 @@
+.. |ament packages| replace:: :term:`ament packages <ament package>`
+
+.. |API| replace:: :term:`API`
+.. |API's| replace:: :term:`API's <API>`
+
+.. |GitHub| replace:: GitHub
+.. _GitHub: https://github.com/
+
+.. |package| replace:: :term:`package`
+.. |packages| replace:: :term:`packages <package>`
+
+.. |REP's| replace:: :term:`REP's <REP>`
