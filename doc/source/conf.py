@@ -123,7 +123,7 @@ html_logo = "images/ros2_logo.png"
 html_theme_options = {
     'navbar_title': "Core Stack Developer Documentation",
     # 'bootswatch_theme': 'Cosmo',
-    'bootswatch_theme': 'Flatly',
+    'bootswatch_theme': 'flatly',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
