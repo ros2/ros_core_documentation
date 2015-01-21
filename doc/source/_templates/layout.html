@@ -13,7 +13,14 @@
                     var icon = $('<span class="glyphicon glyphicon-book"></span>');
                     icon.css('font-size', '0.7em').css('padding', '1px');
                     parent.append(icon);
+                    parent.css('color', '#536481');
                 }
+            });
+            // Put a globe glyphicon after external links
+            $('.external').each(function(i, obj) {
+                var icon = $('<span class="glyphicon glyphicon-globe"></span>');
+                icon.css('font-size', '0.7em').css('padding', '1px');
+                $(obj).append(icon);
             });
             // glossary terms in blockquotes
             $('.glossary').each(function(i, obj) {
