@@ -203,7 +203,9 @@ The ``rcl`` |API| is located in the `ros2/rcl <https://github.com/ros2/rcl>`_ re
 
 For a complete definition of the ``rcl`` |API|, see the |API| documentation:
 
-TODO: Link to ``rcl`` |API| docs
+.. warning::
+
+    TODO: Link to ``rcl`` |API| docs
 
 The ``rmw`` Repository
 ~~~~~~~~~~~~~~~~~~~~~~
