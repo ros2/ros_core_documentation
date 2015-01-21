@@ -9,6 +9,5 @@ sudo apt-get install python-sphinx python-pip
 sudo pip install sphinx_bootstrap_theme
 cd CHECKOUT_PATH/doc
 make html
-cd build/html
-firefox index.html
+firefox build/html/index.html
 ```
