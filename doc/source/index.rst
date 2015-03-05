@@ -175,7 +175,7 @@ The implementation of the client library, e.g. ``rclcpp``, then uses both the ``
 The ``rcl`` implementation is provided by the ``rcl`` |package| and uses the ``rmw`` |API| to implement itself, leaving parts unimplemented where message type specific code is required.
 Then the ``rosidl`` implementation implements symbols from both the generated headers and some type specific functions in the ``rcl`` and ``rmw`` interfaces.
 The actual library which contains this implementation is provided by |packages| with messages in them, e.g. ``geometry_msgs``, but the code is indirectly provided by a language specific ``rosidl`` |package|, e.g. ``rosidl_generator_cpp``.
-Finally, the implementation of the ``rmw`` |API| is provided by a middleware implementation specific |package|, e.g. ``ros_middleware_opensplice``, the library of which is compiled against vendor specific DDS interfaces and types.
+Finally, the implementation of the ``rmw`` |API| is provided by a middleware implementation specific |package|, e.g. ``rmw_opensplice``, the library of which is compiled against vendor specific DDS interfaces and types.
 
 All along the way there are some functions which are necessarily message type specific and require code generated for each message.
 The following diagram layouts the stack of software which results in the generated message code to support the ``rcl`` and ``rmw`` |API's|:
@@ -214,8 +214,8 @@ The ROS middleware interface (``rmw`` |API|) is the minimal set of primitive mid
 Providers of different middleware implementations must implement this interface in order to support the entire ROS stack on top.
 Currently all of the middleware implementations are for different DDS vendors.
 
-The ``rmw`` |API| is located in the ``ros2/ros_middleware_interface`` repository and contains two |packages|, ``ros_middleware_interface`` and ``ros_middleware_interface_cpp``.
-The ``ros_middleware_interface`` |package| contains the C headers which define the interface, while the ``ros_middleware_interface_cpp`` |package| provides some C++ versions of the functions which also exist in the C interface.
+The ``rmw`` |API| is located in the ``ros2/rmw`` repository and contains two |packages|, ``rmw`` and ``rmw_cpp``.
+The ``rmw`` |package| contains the C headers which define the interface, while the ``rmw_cpp`` |package| provides some C++ versions of the functions which also exist in the C interface.
 
 For a definition of the ``rmw`` |API|, see the |API| docs:
 
@@ -224,7 +224,7 @@ For a definition of the ``rmw`` |API|, see the |API| docs:
     TODO: Link to the ``rmw`` |API| docs
 
 Having C++ versions for part of the interface allows the use of native C++ message types which do not need to be converted into the C versions of the message to be used with the middleware interface.
-Therefore, all of the C++ specific functions in ``ros_middleware_interface_cpp`` are actually only prototypes.
+Therefore, all of the C++ specific functions in ``rmw_cpp`` are actually only prototypes.
 The implementation for these C++ functions is provided by code generated in message packages using the C++ ``rosidl`` generator, and typically require no extra support in the ROS middleware implementation being used.
 The extra C++ functions would only be used by the C++ client library (``rclcpp``).
 
@@ -288,20 +288,20 @@ ROS Middleware Implementations
 A ROS middleware implementation is typically made up of a few |packages| in a single repository:
 
 -  ``<implementation_name>_cmake_module``: contains CMake Module for discovering and exposing required dependencies.
--  ``ros_middleware_<implementation_name>``: contains the implementation to the C part of the ``rmw`` |API| (counterpart to the ``ros_middleware_interface`` |package|).
--  ``ros_middleware_<implementation_name>_cpp``: contains the implementation to the C++ part of the ``rmw`` |API| (counterpart to the ``ros_middleware_interface_cpp`` |package|).
+-  ``rmw_<implementation_name>``: contains the implementation to the C part of the ``rmw`` |API| (counterpart to the ``rmw`` |package|).
+-  ``rmw_<implementation_name>_cpp``: contains the implementation to the C++ part of the ``rmw`` |API| (counterpart to the ``rmw_cpp`` |package|).
 -  ``rosidl_typesupport_<implementation_name>``: contains tools to generate DDS interoperability code for ``rosidl`` files.
 -  ``rosidl_typesupport_<implementation_name>_cpp``: contains tools to generate DDS interoperability code for ``rosidl`` files, specifically for the C++ types.
 
-As an example, the ``opensplice`` ROS middleware implementation lives on |GitHub|_ at `ros2/ros_middleware_opensplice <https://github.com/ros2/ros_middleware_opensplice>`_ and has these |packages|:
+As an example, the ``opensplice`` ROS middleware implementation lives on |GitHub|_ at `ros2/rmw_opensplice <https://github.com/ros2/rmw_opensplice>`_ and has these |packages|:
 
 -  ``opensplice_cmake_module``
--  ``ros_middleware_opensplice``
--  ``ros_middleware_opensplice_cpp``
+-  ``rmw_opensplice``
+-  ``rmw_opensplice_cpp``
 -  ``rosidl_typesupport_opensplice``
 -  ``rosidl_typesupport_opensplice_cpp``
 
-In addition to the ``opensplice`` repository of |packages|, there is the ``connext`` implementation on |GitHub|_ at `ros2/ros_middleware_connext <https://github.com/ros2/ros_middleware_connext>`_.
+In addition to the ``opensplice`` repository of |packages|, there is the ``connext`` implementation on |GitHub|_ at `ros2/rmw_connext <https://github.com/ros2/rmw_connext>`_.
 It contains mostly the same |packages|, but it additionally contains a |package| to support the type support introspection using the DDS X-Types standard.
 
 .. warning::
@@ -311,7 +311,7 @@ It contains mostly the same |packages|, but it additionally contains a |package|
 The ``<implementation_name>_cmake_module`` |package| contains any CMake Modules and functions needed to find the supporting dependencies for the middleware implementation.
 In the case of ``opensplice_cmake_module`` it has CMake Modules for finding the OpenSplice implementation in different places on the system since OpenSplice does not ship with a CMake Module itself.
 
-The ``ros_middleware_<implementation_name>`` |package| implements the C part of the ``rmw`` |API|.
+The ``rmw_<implementation_name>`` |package| implements the C part of the ``rmw`` |API|.
 The implementation itself can be C++, it just must expose the header's symbols as ``extern "C"`` so that C applications can link against it.
 
 The ``rosidl_typesupport_<implementation_name>`` |package| provides a generator which generates DDS code using the ``.idl`` files generated by the ``rosidl_generator_dds_idl`` and the DDS IDL code generator provided by the DDS vendor.
