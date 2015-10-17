@@ -38,6 +38,8 @@ extensions = [
     'sphinx.ext.viewcode',
 ]
 
+todo_include_todos = True
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -115,13 +117,13 @@ except ImportError:
     print("Failed to import sphinx_bootstrap_theme, falling back to default.",
           file=sys.stderr)
 
-html_logo = "images/ros2_logo.png"
+# html_logo = "images/ros2_logo.png"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    'navbar_title': "Core Stack Developer Documentation",
+    'navbar_title': "ROS 2 Overview",
     # 'bootswatch_theme': 'Cosmo',
     'bootswatch_theme': 'flatly',
 }
