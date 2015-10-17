@@ -10,3 +10,5 @@
 .. |packages| replace:: :term:`packages <package>`
 
 .. |REP's| replace:: :term:`REP's <REP>`
+
+.. |rclcpp| replace:: :term:`rclcpp`

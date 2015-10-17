@@ -28,6 +28,19 @@
                 blockquote.append($(obj).clone());
                 $(obj).replaceWith(blockquote);
             });
+            // Annotate expandable sections with button and behavior
+            $('.html-toggle').each(function(i, obj) {
+                obj = $(obj);
+                var header = obj.children(':header:first');
+                header.click(function() {
+                    obj.children().not(':header').toggle(0.25);
+                });
+                var note = $('<p style="float: right;" class=toggle-msg>[click to toggle]</p>');
+                $(header).append(note);
+                if (!obj.hasClass('expanded')) {
+                    header.click();
+                }
+            });
         });
     </script>
 {% endblock %}
