@@ -31,7 +31,7 @@ Initializing |rclcpp| is done using the :cpp:func:`rclcpp::init` function::
       rclcpp::init(argc, argv);
     }
 
-This function initializes any global resources needed by the middleware or the client library, as well as doing standard command line argument parsing.
+This function initializes any global resources needed by the middleware and the client library, as well it does client library related command line argument parsing.
 The command line arguments can be mutated by this function, as it will remove any client library specific arguments so that later argument parsing does not have to deal with client library specific arguments.
 Therefore, it is generally a good idea to call this function before doing application specific command line argument parsing.
 
