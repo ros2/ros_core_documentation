@@ -31,38 +31,39 @@ Initializing |rclcpp| is done using the :cpp:func:`rclcpp::init` function::
       rclcpp::init(argc, argv);
     }
 
-This function initializes any global resources needed by the middleware and the client library, as well it does client library related command line argument parsing.
+This function initializes any global resources needed by the middleware and the client library, as well as doing client library related command line argument parsing.
 The command line arguments can be mutated by this function, as it will remove any client library specific arguments so that later argument parsing does not have to deal with client library specific arguments.
 Therefore, it is generally a good idea to call this function before doing application specific command line argument parsing.
 
-Initialization Options
-~~~~~~~~~~~~~~~~~~~~~~
+..
+   Initialization Options
+   ~~~~~~~~~~~~~~~~~~~~~~
 
-The :cpp:func:`rclcpp::init` function can optionally take extra initialization options.
-A few of the useful options (non-exhaustive):
+   The :cpp:func:`rclcpp::init` function can optionally take extra initialization options.
+   A few of the useful options (non-exhaustive):
 
-- :cpp:class:`rclcpp::init::do_not_prune_arguments`: Prevents :cpp:func:`rclcpp::init` from removing client library specific arguments from ``argv``.
-- :cpp:class:`rclcpp::init::on_sigint`: This option requires a callback that is to be called when ``SIGINT`` occurs, but before :cpp:func:`rclcpp::shutdown` is called.
-- :cpp:class:`rclcpp::init::no_sigint_handling`: Prevents |rclcpp| from handling any ``SIGINT`` signals (not recommended).
+   - :cpp:class:`rclcpp::init::do_not_prune_arguments`: Prevents :cpp:func:`rclcpp::init` from removing client library specific arguments from ``argv``.
+   - :cpp:class:`rclcpp::init::on_sigint`: This option requires a callback that is to be called when ``SIGINT`` occurs, but before :cpp:func:`rclcpp::shutdown` is called.
+   - :cpp:class:`rclcpp::init::no_sigint_handling`: Prevents |rclcpp| from handling any ``SIGINT`` signals (not recommended).
 
-These options, and others, can be combined into an :cpp:class:`rclcpp::init::InitializationOptions` object programmatically::
+   These options, and others, can be combined into an :cpp:class:`rclcpp::init::InitializationOptions` object programmatically::
 
-    int main(int argc, char ** argv)
-    {
-      rclcpp::init::InitializationOptions options;
-      options |= rclcpp::init::do_not_prune_arguments;  // Do not prune
-      options.do_not_prune_arguments = false;  // Do prune
-      options.do_not_prune_arguments = true;  // Do not prune, again
-      options.on_sigint = []() {fprintf(stderr, "on_sigint\n");}
-      rclcpp::init(argc, argv, options);
-    }
+      int main(int argc, char ** argv)
+      {
+         rclcpp::init::InitializationOptions options;
+         options |= rclcpp::init::do_not_prune_arguments;  // Do not prune
+         options.do_not_prune_arguments = false;  // Do prune
+         options.do_not_prune_arguments = true;  // Do not prune, again
+         options.on_sigint = []() {fprintf(stderr, "on_sigint\n");}
+         rclcpp::init(argc, argv, options);
+      }
 
-Or they can be passed to :cpp:func:`rclcpp::init` directly::
+   Or they can be passed to :cpp:func:`rclcpp::init` directly::
 
-    int main(int argc, char ** argv)
-    {
-      rclcpp::init(argc, argv, rclcpp::init::do_not_prune_arguments | rclcpp::init::on_sigint(my_sigint_func));
-    }
+      int main(int argc, char ** argv)
+      {
+         rclcpp::init(argc, argv, rclcpp::init::do_not_prune_arguments | rclcpp::init::on_sigint(my_sigint_func));
+      }
 
 Shutdown and Reinitialization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,7 +120,7 @@ The main entry point to the |rclcpp| API is the :cpp:class:`rclcpp::Node` class.
 The :cpp:class:`rclcpp::Node` class represents a single element in the ROS graph.
 Node's can have publishers and subscribers on topics, provide or call services, have parameters, and many other things.
 
-Creating a Node is done by calling the constructor of the Node class and providing a name for the node (after calling :cpp:func:`rclcpp::init`)::
+Creating a node is done by calling the constructor of the :cpp:class:`rclcpp::Node` class and providing a name for the node (after calling :cpp:func:`rclcpp::init`)::
 
     #include <rclcpp/rclcpp.hpp>
 
@@ -129,11 +130,7 @@ Creating a Node is done by calling the constructor of the Node class and providi
       rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("my_node");
     }
 
-Since the :cpp:class:`rclcpp::Node` class operates on an `RAII-style pattern <http://en.cppreference.com/w/cpp/language/raii>`_, the node is initialized and exposed to the ROS graph on construction and is shutdown and removed from the graph on destruction.
-Therefore nodes are scoped and must be kept around to keep the node valid.
-If the node object goes out of scope or is explicitly shutdown then any objects created using the node are also invalid.
-
-It is recommended to create Nodes within a smart pointer, e.g. a shared pointer or a unique pointer, as demonstrated above with the ``make_shared`` alias.
+It is recommended that nodes be created within a smart pointer for automatic object lifetime management, e.g. a shared pointer or a unique pointer, as demonstrated above for the former with the ``make_shared`` alias::
 However, it can be created on the stack as well::
 
     // ...
@@ -141,39 +138,44 @@ However, it can be created on the stack as well::
       rclcpp::Node node("my_node");
     }
 
+Since the :cpp:class:`rclcpp::Node` class operates on an `RAII-style pattern <http://en.cppreference.com/w/cpp/language/raii>`_, the node is initialized and exposed to the ROS graph on construction and is shutdown and removed from the graph on destruction.
+Therefore nodes are scoped and must be kept around to keep the node valid.
+If the node object goes out of scope or is explicitly shutdown then any objects created using the node are also invalid.
+
 The name of the node must be unique across all nodes in the ROS graph.
 If a node with a colliding name is created, then the conflicting node already running will be shutdown.
 
-.. todo:: Add section about name spaces within nodes, e.g. http://wiki.ros.org/roscpp/Overview/NodeHandles#Namespaces
+.. todo:: Add section about namespaces within nodes, e.g. http://wiki.ros.org/roscpp/Overview/NodeHandles#Namespaces
 
-Node Options
-~~~~~~~~~~~~
+..
+   Node Options
+   ~~~~~~~~~~~~
 
-Nodes can optionally take extra options to control its behavior, for example:
+   Nodes can optionally take extra options to control their behavior, for example:
 
-- :cpp:class:`rclcpp::node::anonymous_name`: When passed it generates a unique name for the node by appending an ``_`` followed by a randomly generated string of numbers and letters.
-- :cpp:class:`rclcpp::node::no_parameters`: Disable parameter functionality for this node. It will not be able to have its own parameters nor will other nodes be able to set parameters on it, but it can still read parameters from other nodes.
+   - :cpp:class:`rclcpp::node::anonymous_name`: When passed it generates a unique name for the node by appending an ``_`` followed by a randomly generated string of numbers and letters.
+   - :cpp:class:`rclcpp::node::no_parameters`: Disable parameter functionality for this node. It will not be able to have its own parameters nor will other nodes be able to set parameters on it, but it can still read parameters from other nodes.
 
-.. todo:: Link to exhaustive list of Node options.
-.. todo:: Consider a different namespace to put node options in.
-.. todo:: Follow through with or remove the no_parameters option, as it is sort of half-baked.
+   .. todo:: Link to exhaustive list of Node options.
+   .. todo:: Consider a different namespace to put node options in.
+   .. todo:: Follow through with or remove the no_parameters option, as it is sort of half-baked.
 
-Options can be assembled programmatically::
+   Options can be assembled programmatically::
 
-    // ...
-    {
-      rclcpp::node::NodeOptions options;
-      options |= rclcpp::node::anonymous_name;
-      options.no_parameters = true;
-      auto node = rclcpp::Node::make_shared("my_node", options);
-    }
+      // ...
+      {
+         rclcpp::node::NodeOptions options;
+         options |= rclcpp::node::anonymous_name;
+         options.no_parameters = true;
+         auto node = rclcpp::Node::make_shared("my_node", options);
+      }
 
-Or can be passed directly to the Node's constructor::
+   Or can be passed directly to the Node's constructor::
 
-    // ...
-    {
-      auto node = rclcpp::Node::make_shared("my_node", rclcpp::node::anonymous_name | rclcpp::node::no_parameters);
-    }
+      // ...
+      {
+         auto node = rclcpp::Node::make_shared("my_node", rclcpp::node::anonymous_name | rclcpp::node::no_parameters);
+      }
 
 Publish and Subscribe with Topics
 ---------------------------------
@@ -181,7 +183,7 @@ Publish and Subscribe with Topics
 One of the middleware communication primitives provided by |rclcpp| is the publish-subscribe pattern using topics.
 In this pattern Messages, that are defined by the user in an interface description file, are passed between Publishers and Subscribers which are on the same Topic.
 A Topic is a name with an associated Message type, which determines whether or not Publishers and Subscribers should exchange messages.
-Publishers publish new Messages onto the Topic and any Subscribers which have subscribed to the same Topic (and with the same Message type) will receive those messages asynchronously.
+Publishers publish new Messages onto the Topic and any Subscribers that have subscribed to the same Topic (and with the same Message type) will receive those messages asynchronously.
 
 Working with Messages
 ~~~~~~~~~~~~~~~~~~~~~
@@ -189,8 +191,8 @@ Working with Messages
 Before publishing, a message must be created and filled with information.
 Messages are defined using the ROS IDL within ``.msg`` files.
 These files are used to generate C++ code and data structures which are used for publishing and when receiving from a subscription.
-Messages are namespaced by the package in which their are defined and are converted into C++ code in a conventional way.
-For example, a C++ header file is generated for each messages:
+Messages are namespaced by the package in which they are defined and are converted into C++ code in a conventional way.
+For example, a C++ header file is generated for each message:
 
 - ``package_name/msg/Foo.msg`` -> ``package_name/msg/foo.hpp``
 
@@ -198,13 +200,13 @@ And that header would contain a C++ data structure with a similar namespace:
 
 - ``package_name/msg/Foo.msg`` -> ``package_name::msg::Foo``
 
-In addition to defining custom Messages, there are many predefined Messages that are defined in the common Message packages which come with ROS, for example:
+In addition to defining custom Messages, there are many predefined Messages that are defined in the common Message packages that come with ROS, for example:
 
 - ``std_msgs/msg/String.msg``
 - ``geometry_msgs/msg/Point.msg``
 - ``builtin_msgs/msg/Time.msg``
 
-There are many others, but through out this document the some of the standard messages will be used.
+There are many others, but throughout this document some of the standard messages will be used.
 
 Generated Messages provide attribute access to the Fields so they can be accessed directly for setting and getting::
 
@@ -219,7 +221,7 @@ Generated Messages provide attribute access to the Fields so they can be accesse
       printf("Point at (%d, %d, %d)\n", p.x, p.y, p.z);
     }
 
-The fields can also be access using methods and the named parameter idiom, a.k.a. `method chaining <https://en.wikipedia.org/wiki/Method_chaining>`_::
+The fields can also be accessed using methods and the named parameter idiom, a.k.a. `method chaining <https://en.wikipedia.org/wiki/Method_chaining>`_::
 
     #include <geometry_msgs/msg/point.hpp>
 
@@ -249,9 +251,10 @@ Generated Messages also have some common smart pointer definitions built in, for
 **Advanced:** Messages and Allocators
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Generated Messages also template-able based on an Allocator.
-Since the fixed and dynamic sized arrays within a generated C++ Message use STL containers like ``std::vector``, the generated Message's also expose an Allocator.
-For example, the ``nav_msgs/msg/Path.msg`` Message has a list of "stamped" pose's which are stored in a ``std::vector`` and you could use it with a custom allocator using the template version of the Message structure which ends with a ``_``::
+Generated Messages are also template-able based on an Allocator.
+Since the fixed and dynamic sized arrays within a generated C++ Message use STL containers like ``std::vector``, the generated Messages also expose an Allocator.
+For example, the ``nav_msgs/msg/Path.msg`` Message has a list of time stamped poses which are stored in a ``std::vector``.
+You could use the Message with a custom allocator by using the template version of the Message structure that ends with a ``_``::
 
     #include <nav_msgs/msg/path.hpp>
 
@@ -264,11 +267,11 @@ For example, the ``nav_msgs/msg/Path.msg`` Message has a list of "stamped" pose'
 Publishing with a ``Publisher``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In |rclcpp| publishing is achieved by creating a :cpp:class:`rclcpp::Publisher` class and calling :cpp:member:`rclcpp::Publisher::publish` with a Message as the first parameter.
+In |rclcpp| publishing is achieved by creating an :cpp:class:`rclcpp::Publisher` object and calling :cpp:member:`rclcpp::Publisher::publish` with a Message as the first parameter.
 
 .. todo:: link to complete API docs for Publishers.
 
-Creating a :cpp:class:`rclcpp::Publisher` is done using the node and by providing a topic name, topic type, and, at a minimum, the publishing queue depth.
+Creating an :cpp:class:`rclcpp::Publisher` is done using the node and by providing a topic name, topic type, and, at a minimum, the publishing queue depth.
 The topic type is conveyed as a template argument to the :cpp:member:`rclcpp::Node::advertise` method, for example::
 
     #include <rclcpp/rclcpp.hpp>
@@ -289,7 +292,7 @@ The topic type is conveyed as a template argument to the :cpp:member:`rclcpp::No
 **Advanced:** Alternative Ways to Create Publishers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A :cpp:class:`rclcpp::Publisher` can also be created by passing one of the built-in QoS policies::
+An :cpp:class:`rclcpp::Publisher` can also be created by passing one of the built-in QoS policies::
 
     // ...
     {
