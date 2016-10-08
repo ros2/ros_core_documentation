@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rclcpp: CPP Client Library Overview &#8212; ros_core 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.6/flatly/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="ros_core 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="ROS 2 Overview" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          ROS 2 Overview</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">rclcpp</span></code>: CPP Client Library Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer_overview.html">Core Stack Developer Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">rclcpp</span></code>: CPP Client Library Overview</a><ul>
+<li><a class="reference internal" href="#initialization-and-shutdown">Initialization and Shutdown</a><ul>
+<li><a class="reference internal" href="#shutdown-and-reinitialization">Shutdown and Reinitialization</a></li>
+<li><a class="reference internal" href="#testing-for-shutdown-and-reinitialization">Testing for Shutdown and Reinitialization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nodes">Nodes</a></li>
+<li><a class="reference internal" href="#publish-and-subscribe-with-topics">Publish and Subscribe with Topics</a><ul>
+<li><a class="reference internal" href="#working-with-messages">Working with Messages</a><ul>
+<li><a class="reference internal" href="#advanced-messages-and-smart-pointers"><strong>Advanced:</strong> Messages and Smart Pointers</a></li>
+<li><a class="reference internal" href="#advanced-messages-and-allocators"><strong>Advanced:</strong> Messages and Allocators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#publishing-with-a-publisher">Publishing with a <code class="docutils literal"><span class="pre">Publisher</span></code></a><ul>
+<li><a class="reference internal" href="#advanced-alternative-ways-to-create-publishers"><strong>Advanced:</strong> Alternative Ways to Create Publishers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: ROS 2 Overview"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; ROS 2 Overview</span>
+    </a>
+  </li>
+  <li>
+    <a href="glossary.html" title="Next Chapter: Glossary"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Glossary &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/rclcpp_cpp_client_library_overview.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="rclcpp-cpp-client-library-overview">
+<h1><code class="docutils literal"><span class="pre">rclcpp</span></code>: CPP Client Library Overview<a class="headerlink" href="#rclcpp-cpp-client-library-overview" title="Permalink to this headline">¶</a></h1>
+<p>The ROS 2 core software stack breaks down into a few discrete but related parts:</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#initialization-and-shutdown" id="id2">Initialization and Shutdown</a><ul>
+<li><a class="reference internal" href="#shutdown-and-reinitialization" id="id3">Shutdown and Reinitialization</a></li>
+<li><a class="reference internal" href="#testing-for-shutdown-and-reinitialization" id="id4">Testing for Shutdown and Reinitialization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nodes" id="id5">Nodes</a></li>
+<li><a class="reference internal" href="#publish-and-subscribe-with-topics" id="id6">Publish and Subscribe with Topics</a><ul>
+<li><a class="reference internal" href="#working-with-messages" id="id7">Working with Messages</a></li>
+<li><a class="reference internal" href="#publishing-with-a-publisher" id="id8">Publishing with a <code class="docutils literal"><span class="pre">Publisher</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="initialization-and-shutdown">
+<span id="init-and-shutdown"></span><h2><a class="toc-backref" href="#id2">Initialization and Shutdown</a><a class="headerlink" href="#initialization-and-shutdown" title="Permalink to this headline">¶</a></h2>
+<p>Before using <a class="reference internal" href="glossary.html#term-rclcpp"><span class="xref std std-term">rclcpp</span></a> it must be initialized exactly once per process.
+Initializing <a class="reference internal" href="glossary.html#term-rclcpp"><span class="xref std std-term">rclcpp</span></a> is done using the <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::init()</span></code> function:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;rclcpp/rclcpp.hpp&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This function initializes any global resources needed by the middleware and the client library, as well as doing client library related command line argument parsing.
+The command line arguments can be mutated by this function, as it will remove any client library specific arguments so that later argument parsing does not have to deal with client library specific arguments.
+Therefore, it is generally a good idea to call this function before doing application specific command line argument parsing.</p>
+<div class="section" id="shutdown-and-reinitialization">
+<h3><a class="toc-backref" href="#id3">Shutdown and Reinitialization</a><a class="headerlink" href="#shutdown-and-reinitialization" title="Permalink to this headline">¶</a></h3>
+<p>Initialization can be done again, after a call to <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::shutdown()</span></code> has been completed successfully:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="cm">/* condition */</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="o">::</span><span class="n">do_not_prune_arguments</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+    <span class="n">rclcpp</span><span class="o">::</span><span class="n">shutdown</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The shutdown function causes all nodes and their constituent parts to become invalid and shutdown.
+It also destroys any global resources created when the initialization function was originally called.</p>
+<p>Note that if you intend to call <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::init()</span></code> multiple times, be sure to use the <code class="docutils literal"><span class="pre">do_not_prune_arguments</span></code> initialization option, as is done above, in order to preserve the original arguments for future invocations.</p>
+</div>
+<div class="section" id="testing-for-shutdown-and-reinitialization">
+<h3><a class="toc-backref" href="#id4">Testing for Shutdown and Reinitialization</a><a class="headerlink" href="#testing-for-shutdown-and-reinitialization" title="Permalink to this headline">¶</a></h3>
+<p>In order to test whether or not <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::shutdown()</span></code> has been called, the <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::ok()</span></code> function can be used:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span> <span class="p">{</span>
+  <span class="c1">// Do work...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In order to test if the system has been reinitialized, an <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::init::InitInstance</span></code> can be retrieved using the <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::init::get_instance()</span></code> function and tested against the current instance using <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::ok()</span></code>:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="o">::</span><span class="n">InitInstance</span> <span class="n">init_instance</span> <span class="o">=</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="o">::</span><span class="n">get_instance</span><span class="p">();</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">ok</span><span class="p">(</span><span class="n">init_instance</span><span class="p">))</span> <span class="p">{</span>
+  <span class="c1">// Do work...</span>
+<span class="p">}</span>
+<span class="c1">// Either shutting down or restarting...</span>
+</pre></div>
+</div>
+<p>The instance can be compared to check that the reinitialization was not missed:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="o">::</span><span class="n">InitInstance</span> <span class="n">init_instance</span> <span class="o">=</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="o">::</span><span class="n">get_instance</span><span class="p">();</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">rclcpp</span><span class="o">::</span><span class="n">ok</span><span class="p">(</span><span class="n">init_instance</span><span class="p">))</span> <span class="p">{</span>
+  <span class="c1">// Do work...</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">init_instance</span> <span class="o">!=</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="o">::</span><span class="n">get_instance</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// Reinitialization happened since the last rclcpp::ok check...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The initialization instance is just a handle used for comparison and can be copied, moved, or destroyed without consequence.</p>
+</div>
+</div>
+<div class="section" id="nodes">
+<h2><a class="toc-backref" href="#id5">Nodes</a><a class="headerlink" href="#nodes" title="Permalink to this headline">¶</a></h2>
+<p>The main entry point to the <a class="reference internal" href="glossary.html#term-rclcpp"><span class="xref std std-term">rclcpp</span></a> API is the <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Node</span></code> class.
+The <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Node</span></code> class represents a single element in the ROS graph.
+Node&#8217;s can have publishers and subscribers on topics, provide or call services, have parameters, and many other things.</p>
+<p>Creating a node is done by calling the constructor of the <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Node</span></code> class and providing a name for the node (after calling <code class="xref cpp cpp-func docutils literal"><span class="pre">rclcpp::init()</span></code>):</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;rclcpp/rclcpp.hpp&gt;</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">);</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">SharedPtr</span> <span class="n">node</span> <span class="o">=</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="o">::</span><span class="n">make_shared</span><span class="p">(</span><span class="s">&quot;my_node&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It is recommended that nodes be created within a smart pointer for automatic object lifetime management, e.g. a shared pointer or a unique pointer, as demonstrated above for the former with the <code class="docutils literal"><span class="pre">make_shared</span></code> alias::
+However, it can be created on the stack as well:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span> <span class="n">node</span><span class="p">(</span><span class="s">&quot;my_node&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Since the <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Node</span></code> class operates on an <a class="reference external" href="http://en.cppreference.com/w/cpp/language/raii">RAII-style pattern</a>, the node is initialized and exposed to the ROS graph on construction and is shutdown and removed from the graph on destruction.
+Therefore nodes are scoped and must be kept around to keep the node valid.
+If the node object goes out of scope or is explicitly shutdown then any objects created using the node are also invalid.</p>
+<p>The name of the node must be unique across all nodes in the ROS graph.
+If a node with a colliding name is created, then the conflicting node already running will be shutdown.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Add section about namespaces within nodes, e.g. <a class="reference external" href="http://wiki.ros.org/roscpp/Overview/NodeHandles#Namespaces">http://wiki.ros.org/roscpp/Overview/NodeHandles#Namespaces</a></p>
+</div>
+</div>
+<div class="section" id="publish-and-subscribe-with-topics">
+<h2><a class="toc-backref" href="#id6">Publish and Subscribe with Topics</a><a class="headerlink" href="#publish-and-subscribe-with-topics" title="Permalink to this headline">¶</a></h2>
+<p>One of the middleware communication primitives provided by <a class="reference internal" href="glossary.html#term-rclcpp"><span class="xref std std-term">rclcpp</span></a> is the publish-subscribe pattern using topics.
+In this pattern Messages, that are defined by the user in an interface description file, are passed between Publishers and Subscribers which are on the same Topic.
+A Topic is a name with an associated Message type, which determines whether or not Publishers and Subscribers should exchange messages.
+Publishers publish new Messages onto the Topic and any Subscribers that have subscribed to the same Topic (and with the same Message type) will receive those messages asynchronously.</p>
+<div class="section" id="working-with-messages">
+<h3><a class="toc-backref" href="#id7">Working with Messages</a><a class="headerlink" href="#working-with-messages" title="Permalink to this headline">¶</a></h3>
+<p>Before publishing, a message must be created and filled with information.
+Messages are defined using the ROS IDL within <code class="docutils literal"><span class="pre">.msg</span></code> files.
+These files are used to generate C++ code and data structures which are used for publishing and when receiving from a subscription.
+Messages are namespaced by the package in which they are defined and are converted into C++ code in a conventional way.
+For example, a C++ header file is generated for each message:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">package_name/msg/Foo.msg</span></code> -&gt; <code class="docutils literal"><span class="pre">package_name/msg/foo.hpp</span></code></li>
+</ul>
+<p>And that header would contain a C++ data structure with a similar namespace:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">package_name/msg/Foo.msg</span></code> -&gt; <code class="docutils literal"><span class="pre">package_name::msg::Foo</span></code></li>
+</ul>
+<p>In addition to defining custom Messages, there are many predefined Messages that are defined in the common Message packages that come with ROS, for example:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">std_msgs/msg/String.msg</span></code></li>
+<li><code class="docutils literal"><span class="pre">geometry_msgs/msg/Point.msg</span></code></li>
+<li><code class="docutils literal"><span class="pre">builtin_msgs/msg/Time.msg</span></code></li>
+</ul>
+<p>There are many others, but throughout this document some of the standard messages will be used.</p>
+<p>Generated Messages provide attribute access to the Fields so they can be accessed directly for setting and getting:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;geometry_msgs/msg/point.hpp&gt;</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span> <span class="n">p</span><span class="p">;</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Point at (%d, %d, %d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The fields can also be accessed using methods and the named parameter idiom, a.k.a. <a class="reference external" href="https://en.wikipedia.org/wiki/Method_chaining">method chaining</a>:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;geometry_msgs/msg/point.hpp&gt;</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span> <span class="n">p</span><span class="p">;</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">set__x</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">set__y</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">set__z</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Point at (%d, %d, %d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="html-toggle section" id="advanced-messages-and-smart-pointers">
+<h4><strong>Advanced:</strong> Messages and Smart Pointers<a class="headerlink" href="#advanced-messages-and-smart-pointers" title="Permalink to this headline">¶</a></h4>
+<p>Generated Messages also have some common smart pointer definitions built in, for example:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">geometry_msgs::msg::Point::SharedPtr</span></code> is equivalent to <code class="docutils literal"><span class="pre">std::shared_ptr&lt;geometry_msgs::msg::Point&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">geometry_msgs::msg::Point::ConstSharedPtr</span></code> is equivalent to <code class="docutils literal"><span class="pre">std::shared_ptr&lt;const</span> <span class="pre">geometry_msgs::msg::Point&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">geometry_msgs::msg::Point::UniquePtr</span></code> is equivalent to <code class="docutils literal"><span class="pre">std::unique_ptr&lt;geometry_msgs::msg::Point&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">geometry_msgs::msg::Point::WeakPtr</span></code> is equivalent to <code class="docutils literal"><span class="pre">std::weak_ptr&lt;geometry_msgs::msg::Point&gt;</span></code></li>
+</ul>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">link to exhaustive list of aliases provided.</p>
+</div>
+</div>
+<div class="html-toggle section" id="advanced-messages-and-allocators">
+<h4><strong>Advanced:</strong> Messages and Allocators<a class="headerlink" href="#advanced-messages-and-allocators" title="Permalink to this headline">¶</a></h4>
+<p>Generated Messages are also template-able based on an Allocator.
+Since the fixed and dynamic sized arrays within a generated C++ Message use STL containers like <code class="docutils literal"><span class="pre">std::vector</span></code>, the generated Messages also expose an Allocator.
+For example, the <code class="docutils literal"><span class="pre">nav_msgs/msg/Path.msg</span></code> Message has a list of time stamped poses which are stored in a <code class="docutils literal"><span class="pre">std::vector</span></code>.
+You could use the Message with a custom allocator by using the template version of the Message structure that ends with a <code class="docutils literal"><span class="pre">_</span></code>:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;nav_msgs/msg/path.hpp&gt;</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">MyAllocator</span> <span class="n">a</span><span class="p">;</span>
+  <span class="n">nav_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Path_</span><span class="o">&lt;</span><span class="n">MyAllocator</span><span class="o">&gt;</span> <span class="n">path</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="publishing-with-a-publisher">
+<h3><a class="toc-backref" href="#id8">Publishing with a <code class="docutils literal"><span class="pre">Publisher</span></code></a><a class="headerlink" href="#publishing-with-a-publisher" title="Permalink to this headline">¶</a></h3>
+<p>In <a class="reference internal" href="glossary.html#term-rclcpp"><span class="xref std std-term">rclcpp</span></a> publishing is achieved by creating an <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Publisher</span></code> object and calling <code class="xref cpp cpp-member docutils literal"><span class="pre">rclcpp::Publisher::publish</span></code> with a Message as the first parameter.</p>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">link to complete API docs for Publishers.</p>
+</div>
+<p>Creating an <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Publisher</span></code> is done using the node and by providing a topic name, topic type, and, at a minimum, the publishing queue depth.
+The topic type is conveyed as a template argument to the <code class="xref cpp cpp-member docutils literal"><span class="pre">rclcpp::Node::advertise</span></code> method, for example:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;rclcpp/rclcpp.hpp&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;geometry_msgs/msg/point.hpp&gt;</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="c1">// Previously created a node of type rclcpp::Node::SharedPtr...</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">Publisher</span><span class="o">::</span><span class="n">SharedPtr</span> <span class="n">publisher</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;my_topic&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span> <span class="n">point</span><span class="p">;</span>
+  <span class="n">point</span><span class="p">.</span><span class="n">set__x</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">set__y</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">set__z</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">publisher</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">point</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="html-toggle section" id="advanced-alternative-ways-to-create-publishers">
+<h4><strong>Advanced:</strong> Alternative Ways to Create Publishers<a class="headerlink" href="#advanced-alternative-ways-to-create-publishers" title="Permalink to this headline">¶</a></h4>
+<p>An <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Publisher</span></code> can also be created by passing one of the built-in QoS policies:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="k">auto</span> <span class="n">publisher</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;my_topic&quot;</span><span class="p">,</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">qos</span><span class="o">::</span><span class="n">profile_sensor_data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or with a programmatically created QoS profile based on an existing one:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="n">rclcpp</span><span class="o">::</span><span class="n">qos</span><span class="o">::</span><span class="n">QoS</span> <span class="n">qos</span> <span class="o">=</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">qos</span><span class="o">::</span><span class="n">profile_default</span><span class="p">;</span>
+  <span class="n">qos</span><span class="p">.</span><span class="n">depth</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">publisher</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;my_topic&quot;</span><span class="p">,</span> <span class="n">qos</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Or passed directly to the method call:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+<span class="p">{</span>
+  <span class="k">auto</span> <span class="n">publisher</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="s">&quot;my_topic&quot;</span><span class="p">,</span>
+    <span class="n">rclcpp</span><span class="o">::</span><span class="n">qos</span><span class="o">::</span><span class="n">profile_default</span> <span class="o">|</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">qos</span><span class="o">::</span><span class="n">best_effort</span> <span class="o">|</span> <span class="n">rclcpp</span><span class="o">::</span><span class="n">qos</span><span class="o">::</span><span class="n">depth</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Todo</p>
+<p class="last">Consider moving alternative signatures to a separate section and link to it.</p>
+</div>
+<p>The <a class="reference external" href="http://en.cppreference.com/w/cpp/language/raii">RAII-style pattern</a> is also used with the <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Publisher</span></code>, so once created it has been advertised to the ROS graph and other nodes are aware of it.
+Conversely, when the <code class="xref cpp cpp-class docutils literal"><span class="pre">rclcpp::Publisher</span></code> is allowed to go out of scope, or is explicitly deleted, it is unadvertised from the ROS graph.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014, Open Source Robotics Foundation, Inc.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
