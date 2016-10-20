@@ -1,0 +1,8 @@
+{# Import the theme's layout. #}
+{% extends "!layout.html" %}
+
+{# Add some extra stuff before and use existing with 'super()' call. #}
+{% block linktags %}
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  {{ super() }}
+{% endblock %}
