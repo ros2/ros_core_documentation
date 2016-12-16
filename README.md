@@ -6,7 +6,7 @@ Documentation for the Core ROS 2 packages which does not fit into one of the ind
 To build and view on Ubuntu:
 ```
 sudo apt-get install python-sphinx python-pip
-sudo pip install sphinx_bootstrap_theme
+sudo pip install sphinx-rtd-theme
 cd CHECKOUT_PATH/doc
 make html
 firefox build/html/index.html
