@@ -16,6 +16,10 @@ The ROS 2 core software stack breaks down into a few discrete but related parts:
 
 .. highlight:: c
 
+.. danger::
+
+    This document is under construction and should not be used as a reference. Some things that are implemented are not documented here and other things documented here are the "desired" state but are not implemented in the actual code yet.
+
 .. _init_and_shutdown:
 
 Initialization and Shutdown

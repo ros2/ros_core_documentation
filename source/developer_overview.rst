@@ -282,9 +282,7 @@ This implementation avoids direct contact with the middleware by instead using t
 
 For a complete definition of the ``rcl`` |API|, see the |API| documentation:
 
-.. warning::
-
-    TODO: Link to ``rcl`` |API| docs
+`api/rcl/index.html <api/rcl/index.html>`_
 
 The ``rmw`` Repository
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -298,9 +296,7 @@ The ``rmw`` |package| contains the C headers which define the interface, the imp
 
 For a definition of the ``rmw`` |API|, see the |API| docs:
 
-.. warning::
-
-    TODO: Link to the ``rmw`` |API| docs
+`api/rmw/index.html <api/rmw/index.html>`_
 
 
 The ``rosidl`` Repository
@@ -438,10 +434,9 @@ The ROS Client Library for C++ (``rclcpp``) is the user facing, C++ idiomatic in
 ``rclcpp`` makes use of all the features of C++ and C++11 to make the interface as easy to use as possible, but since it reuses the implementation in ``rcl`` it is able maintain a consistent behavior with the other client libraries that use the ``rcl`` |API|.
 
 The ``rclcpp`` repository is located on |GitHub|_ at `ros2/rclcpp <https://github.com/ros2/rclcpp>`_ and contains the |package| ``rclcpp``.
+The generated |API| documentation is here:
 
-.. warning::
-
-    TODO: Link to the ``rclcpp`` |API| docs
+`api/rclcpp/index.html <api/rclcpp/index.html>`_
 
 The ``rclpy`` Repositories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
