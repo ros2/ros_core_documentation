@@ -139,6 +139,11 @@ The environment setup files, often named something like ``setup.bash``, are a pl
 The developers are able to do this using an "environment hook" which is basically an arbitrary bit of shell code that can set or modify environment variables, define shell functions, setup auto-completion rules, etc...
 This feature is how, for example, ROS 1 set the ``ROS_DISTRO`` environment variable without ``catkin`` knowing anything about the ROS distribution.
 
+The ``ament_python`` Repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Located on |GitHub|_ at `ament/ament_python <https://github.com/ament/ament_python>`_, this repository contains several functions useful to set up and install python packages with ament-specific functionality.
+
 The ``ament_lint`` Repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -339,6 +344,18 @@ For more information on what exactly is in the ``rosidl`` |API| (static and gene
 .. warning::
 
     TODO: link to definition of ``rosidl`` |APIs|
+
+The ``rcutils`` Repository
+~~~~~~~~~~~~~~~~~~~~~~
+
+ROS 2 C Utilities is a C API containing of macros, functions, and data structures used throughout the ROS 2 codebase.
+The ROS C Utilities (``rcutils`` |API|) contains macros, functions, and data structures for error handling, commandline argument parsing, and logging that are not specific to the client or middleware layers and can be shared by both.
+
+The ``rcutils`` |API| and implementation are located in the `ros2/rcutils <https://github.com/ros2/rcutils>`_ repository on |GitHub|_ which contains the interface as C headers.
+
+For a complete definition of the ``rcutils`` |API|, see the |API| documentation:
+
+`api/rcutils/index.html <api/rcutils/index.html>`_
 
 ROS Middleware Implementations
 ------------------------------
