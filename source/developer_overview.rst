@@ -139,11 +139,6 @@ The environment setup files, often named something like ``setup.bash``, are a pl
 The developers are able to do this using an "environment hook" which is basically an arbitrary bit of shell code that can set or modify environment variables, define shell functions, setup auto-completion rules, etc...
 This feature is how, for example, ROS 1 set the ``ROS_DISTRO`` environment variable without ``catkin`` knowing anything about the ROS distribution.
 
-The ``ament_python`` Repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Located on |GitHub|_ at `ament/ament_python <https://github.com/ament/ament_python>`_, this repository contains several functions useful to set up and install python packages with ament-specific functionality.
-
 The ``ament_lint`` Repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -346,9 +341,9 @@ For more information on what exactly is in the ``rosidl`` |API| (static and gene
     TODO: link to definition of ``rosidl`` |APIs|
 
 The ``rcutils`` Repository
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ROS 2 C Utilities is a C API containing of macros, functions, and data structures used throughout the ROS 2 codebase.
+ROS 2 C Utilities is a C API composed of macros, functions, and data structures used throughout the ROS 2 codebase.
 The ROS C Utilities (``rcutils`` |API|) contains macros, functions, and data structures for error handling, commandline argument parsing, and logging that are not specific to the client or middleware layers and can be shared by both.
 
 The ``rcutils`` |API| and implementation are located in the `ros2/rcutils <https://github.com/ros2/rcutils>`_ repository on |GitHub|_ which contains the interface as C headers.
@@ -436,7 +431,7 @@ ROS Client Interfaces, a.k.a. |client libraries|, are user facing interfaces whi
     Since ``rcl`` and ``rclc`` are so similar to each other, ``rclc`` essential can be described as ``rcl`` plus execution (threading).
     However, the distinction becomes clearer when you consider client libraries in different languages.
 
-    The ``rclc`` repository is located on |GitHub|_ at `ros2/rclc <https://github.com/ros2/rclc>`_ and contains the |package| ``rcl`` which contains the development resources, interface and reference implementation that is required at runtime.
+    The ``rclc`` repository is located on |GitHub|_ at `ros2/rclc <https://github.com/ros2/rclc>`_ and contains the |package| ``rclc`` which contains the development resources, interface and reference implementation that is required at runtime.
 
     .. warning::
 
@@ -455,8 +450,8 @@ The generated |API| documentation is here:
 
 `api/rclcpp/index.html <api/rclcpp/index.html>`_
 
-The ``rclpy`` Repositories
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``rclpy`` Package
+~~~~~~~~~~~~~~~~~~~~~
 
 The ROS Client Library for Python (``rclpy``) is the Python counterpart to the C++ client library.
 Like the C++ client library, ``rclpy`` also builds on top of the ``rcl`` C API for its implementation.
