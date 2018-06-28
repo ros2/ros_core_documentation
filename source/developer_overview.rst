@@ -38,14 +38,14 @@ Additionally it should make |packages| conventional, such that developers should
 The ``ament_package`` Package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Located on |GitHub|_ at `ament/ament_package <https://github.com/ament/ament_package>`_, this repository contains a single :term:`ament Python package` which provides a Python |API| for finding and parsing :term:`package.xml` files.
+Located on |GitHub|_ at `ament/ament_package <https://github.com/ament/ament_package>`_, this repository contains a single :term:`ament Python package` that provides various utilities for |ament packages|, e.g. templates for environment hooks.
 
 All |ament packages| must contain a single :term:`package.xml` file at the root of the package regardless of their underlying build system.
 The :term:`package.xml` "manifest" file contains information that is required in order to process and operate on a |package|.
 This |package| information includes things like the |package|'s name, which is globally unique, and the package's dependencies.
 The :term:`package.xml` file also serves as the marker file which indicates the location of the |package| on the file system.
 
-Other than parsing the :term:`package.xml` files, ``ament_package`` provides functionality to locate |packages| by searching the file system for these :term:`package.xml` files.
+Parsing of the :term:`package.xml` files is provided by ``catkin_pkg`` (as in ROS 1), while functionality to locate |packages| by searching the file system for these :term:`package.xml` files is provided by build tools such as ``colcon``.
 
 .. glossary::
 
