@@ -146,16 +146,12 @@ Located on |GitHub|_ at `ament/ament_lint <https://github.com/ament/ament_lint>`
 Currently there are |packages| to support C++ style linting using ``uncrustify``, static C++ code checks using ``cppcheck``, checking for copyright in source code, Python style linting using ``pep8``, and other things.
 The list of helper packages will likely grow in the future.
 
-The ``ament_tools`` Package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Build tools
+~~~~~~~~~~~
 
-Located on |GitHub|_ at `ament/ament_tools <https://github.com/ament/ament_tools>`_, this repository provides a single ament Python package which provides command line tools for working with |ament packages|.
-Like `catkin_tools <https://github.com/catkin/catkin_tools>`_ it provides a lot of its functionality in the ``ament build`` command, which can build a workspace of ``ament`` packages together at once.
-
-Because ``ament_tools`` and ``ament_package`` are ament Python packages, they can be bootstrapped in an ament workspace just like any other |package|.
-
-Ideally these tools could be combined with the tools provided by `catkin_tools <https://github.com/catkin/catkin_tools>`_ in order to provide a single tool for both build systems.
-We believe this is possible because the two build systems are so similar, but there has not been time to solve the remaining issues and actually consolidate the tools yet.
+A build tool performs the task of building a workspace of packages together at once with a single invocation.
+For ROS 2 releases up to Ardent, the build tool providing this functionality is called ``ament_tools``.
+As of ROS 2 Bouncy, ``ament_tools`` has been superseded by ``colcon``, as described in `the universal build tool article <http://design.ros2.org/articles/build_tool.html>`_.
 
 Internal ROS Interfaces
 -----------------------
