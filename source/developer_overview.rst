@@ -459,7 +459,7 @@ All operations happen on the Python version of the messages until they need to b
 This is avoided if possible when communicating between publishers and subscribers in the same process to cut down on the conversion into and out of Python.
 
 The ``rclpy`` repository is located on |GitHub|_ at `ros2/rclpy <https://github.com/ros2/rclpy>`_ and contains the |package| ``rclpy``.
+The generated |API| documentation is here:
 
-.. warning::
 
-    TODO: Link to the ``rclpy`` |API| docs.
+`api/rclpy/index.html <api/rclpy/index.html>`_
