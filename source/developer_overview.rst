@@ -182,7 +182,7 @@ The purpose of the ``rcl`` implementation is to provide a common implementation 
 The purpose of the ``rmw`` interface is to capture the absolute minimum middleware functionality needed to support ROS's client libraries.
 Finally, the implementation of the ``rmw`` |API| is provided by a middleware implementation specific |package|, e.g. ``rmw_fastrtps_cpp``, the library of which is compiled against vendor specific DDS interfaces and types.
 
-In the diagram above there is also a box labeled ``ros_to_dds``, and the purpose of this box is to represent a category of possible packages which all the user to access DDS vendor specific objects and settings using the ROS equivalents.
+In the diagram above there is also a box labeled ``ros_to_dds``, and the purpose of this box is to represent a category of possible packages which allow the user to access DDS vendor specific objects and settings using the ROS equivalents.
 One of the goals of this abstraction interface is to completely insulate the ROS user space code from the middleware being used, so that changing DDS vendors or even middleware technology has a minimal impact on the users code.
 However, we recognize that on occasion it is useful to reach into the implementation and manually adjust settings despite the consequences that might have.
 By requiring the use of one of these packages in order to access the underlying DDS vendor's objects, we can avoid exposing vendor specific symbols and headers in the normal interface.
@@ -276,9 +276,7 @@ The ``rcl`` |API| is located in the `ros2/rcl <https://github.com/ros2/rcl>`_ re
 The ``rcl`` C implementation is provided by the ``rcl`` |package| in the same repository.
 This implementation avoids direct contact with the middleware by instead using the ``rmw`` and ``rosidl`` |APIs|.
 
-For a complete definition of the ``rcl`` |API|, see the |API| documentation:
-
-`api/rcl/index.html <api/rcl/index.html>`_
+For a complete definition of the ``rcl`` |API|, see its `API documentation<api/rcl/index.html>`_:
 
 The ``rmw`` Repository
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -339,14 +337,12 @@ For more information on what exactly is in the ``rosidl`` |API| (static and gene
 The ``rcutils`` Repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ROS 2 C Utilities is a C API composed of macros, functions, and data structures used throughout the ROS 2 codebase.
-The ROS C Utilities (``rcutils`` |API|) contains macros, functions, and data structures for error handling, commandline argument parsing, and logging that are not specific to the client or middleware layers and can be shared by both.
+ROS 2 C Utilities (``rcutils``) is a C |API| composed of macros, functions, and data structures used throughout the ROS 2 codebase.
+These are mainly used for error handling, commandline argument parsing, and logging which are not specific to the client or middleware layers and can be shared by both.
 
 The ``rcutils`` |API| and implementation are located in the `ros2/rcutils <https://github.com/ros2/rcutils>`_ repository on |GitHub|_ which contains the interface as C headers.
 
-For a complete definition of the ``rcutils`` |API|, see the |API| documentation:
-
-`api/rcutils/index.html <api/rcutils/index.html>`_
+For a complete definition of the ``rcutils`` |API|, see `its API documentation <api/rcutils/index.html>`_
 
 ROS Middleware Implementations
 ------------------------------
