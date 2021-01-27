@@ -1,12 +1,6 @@
 ros_core_documentation
 ======================
 
-Documentation for the Core ROS 2 packages which does not fit into one of the individual packages' documentation.
-
-To build and view on Ubuntu:
-```
-sudo apt-get install python-sphinx python-pip
-sudo pip install sphinx-rtd-theme
-make html
-firefox build/html/index.html
-```
+All of the content here has been migrated over to https://index.ros.org/doc/ros2
+(the sources live at https://github.com/ros2/ros2_documentation).  Please open new
+issues or pull requests over there.
